@@ -131,11 +131,8 @@ If the language has a parsing tool that is available as Java library:
 2. Implement a wrapper for the parsing tool.
 See [FuzzyCppParser](src/main/kotlin/astminer/parse/cpp/FuzzyCppParser.kt) for an example of a wrapper.
 
-## Contribution
-We believe that astminer could find use beyond our own mining tasks.
-
-Please help make astminer easier to use by sharing your use cases. Pull requests are welcome as well.
-Support for other languages and documentation are the key areas of improvement.
+## Contributing
+See [CONTRIBUTION.md](CONTRIBUTION.md)
 
 ## Citing astminer
 A [paper](https://zenodo.org/record/2595271) dedicated to astminer (more precisely, to its older version [PathMiner](https://github.com/vovak/astminer/tree/pathminer)) was presented at [MSR'19](https://2019.msrconf.org/). 
