@@ -1,0 +1,18 @@
+inputDir: 'src/test/resources/methodSplitting/'
+outputDir: 'output'
+
+parser:
+  name: 'antlr'
+  extensions: ['java']
+
+filters:
+  - name: 'by function name length'
+    maxWordsNumber: 10
+  - name: 'by words number'
+    maxTokenWordsNumber: 100
+
+labelExtractor:
+  name: 'function name'
+
+storage:
+  name: 'CsvAST'

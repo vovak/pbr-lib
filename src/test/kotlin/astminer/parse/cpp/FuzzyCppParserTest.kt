@@ -5,6 +5,7 @@ import astminer.common.getProjectFilesWithExtension
 import astminer.examples.forFilesWithSuffix
 import astminer.parse.fuzzy.cpp.FuzzyCppParser
 import astminer.parse.fuzzy.cpp.FuzzyNode
+import astminer.parseFiles
 import org.junit.Assert
 import org.junit.Assume
 import org.junit.Before
@@ -33,14 +34,11 @@ class FuzzyCppParserTest {
     fun testProjectParsing() {
         val folder = File("src/test/resources/fuzzy/")
         val parser = FuzzyCppParser()
-        val nodes = mutableListOf<FuzzyNode?>()
-        parser.parseFiles(getProjectFilesWithExtension(folder, "cpp")) {
-            nodes.add(it.root)
-        }
+        val nodes = parser.parseFiles(getProjectFilesWithExtension(folder, "cpp"))
         Assert.assertEquals(
                 "There is only 3 file with .cpp extension in 'testData/examples' folder",
                 3,
-                nodes.filterNotNull().size
+                nodes.size
         )
     }
 
@@ -88,15 +86,12 @@ class FuzzyCppParserTest {
         val parser = FuzzyCppParser()
 
         parser.preprocessProject(projectRoot, preprocessedRoot)
-        val nodes = mutableListOf<FuzzyNode?>()
-        parser.parseFiles(getProjectFilesWithExtension(projectRoot, "cpp")) {
-            nodes.add(it.root)
-        }
+        val nodes = parser.parseFiles(getProjectFilesWithExtension(projectRoot, "cpp"))
 
         Assert.assertEquals(
                 "Parse tree for a valid file should not be null. There are 5 files in example project.",
                 5,
-                nodes.filterNotNull().size
+                nodes.size
         )
         preprocessedRoot.deleteRecursively()
     }

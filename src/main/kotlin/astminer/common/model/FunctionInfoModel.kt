@@ -1,12 +1,12 @@
 package astminer.common.model
 
 interface TreeFunctionSplitter<T : Node> {
-    fun splitIntoFunctions(root: T): Collection<FunctionInfo<T>>
+    fun splitIntoFunctions(root: T, filePath: String): Collection<FunctionInfo<T>>
 }
 
 class FunctionInfoPropertyNotImplementedException(propertyName: String) :
     UnsupportedOperationException(
-        "The property $propertyName of FunctionInfo for this language and parser type is not implemented yet. " +
+        "The property `$propertyName` of FunctionInfo for this language and parser type is not implemented yet. " +
                 "Consider implementing it."
     )
 

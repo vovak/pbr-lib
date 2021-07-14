@@ -1,21 +1,16 @@
 package astminer.examples
 
-import astminer.common.getProjectFilesWithExtension
-import astminer.parse.antlr.javascript.JavaScriptParser
-import astminer.storage.path.PathBasedStorageConfig
-import astminer.storage.path.Code2VecPathStorage
-import java.io.File
+import astminer.config.*
+import astminer.pipeline.Pipeline
 
 fun allJavaScriptFiles() {
-    val folder = "src/test/resources/examples"
-    val outputDir = "out_examples/allJavaScriptFilesAntlr"
+    val config = PipelineConfig(
+        inputDir = "src/test/resources/examples",
+        outputDir = "out_examples/allJavaScriptFilesAntlr",
+        parser = ParserConfig(ParserType.Antlr, listOf(FileExtension.JavaScript)),
+        labelExtractor = FileNameExtractorConfig(),
+        storage = Code2VecPathStorageConfig(5, 5)
+    )
 
-    val storage = Code2VecPathStorage(outputDir, PathBasedStorageConfig(5, 5))
-
-    val files = getProjectFilesWithExtension(File(folder), "js")
-    JavaScriptParser().parseFiles(files) { parseResult ->
-        storage.store(parseResult.labeledWithFilePath())
-    }
-
-    storage.close()
+    Pipeline(config).run()
 }

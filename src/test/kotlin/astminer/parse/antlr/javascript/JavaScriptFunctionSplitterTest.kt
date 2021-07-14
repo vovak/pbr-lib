@@ -24,7 +24,7 @@ class JavaScriptFunctionSplitterTest {
     fun parseTree() {
         val testTree = parser.parseInputStream(File(testFilePath).inputStream())
         assertNotNull(testTree)
-        functionInfos = functionSplitter.splitIntoFunctions(testTree)
+        functionInfos = functionSplitter.splitIntoFunctions(testTree, testFilePath)
     }
 
     @Test

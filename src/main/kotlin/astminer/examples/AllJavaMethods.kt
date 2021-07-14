@@ -1,11 +1,10 @@
 package astminer.examples
 
-import astminer.cli.LabeledResult
+import astminer.common.model.LabeledResult
 import astminer.common.model.FunctionInfo
 import astminer.parse.gumtree.GumTreeNode
 import astminer.parse.gumtree.java.GumTreeJavaParser
 import astminer.parse.gumtree.java.GumTreeJavaFunctionSplitter
-import astminer.storage.*
 import astminer.storage.path.Code2VecPathStorage
 import astminer.storage.path.PathBasedStorageConfig
 import java.io.File
@@ -32,7 +31,7 @@ fun allJavaMethods() {
         val fileNode = GumTreeJavaParser().parseInputStream(file.inputStream())
 
         //extract method nodes
-        val methodNodes = GumTreeJavaFunctionSplitter().splitIntoFunctions(fileNode)
+        val methodNodes = GumTreeJavaFunctionSplitter().splitIntoFunctions(fileNode, file.path)
 
         methodNodes.forEach { methodInfo ->
             //Retrieve a method identifier

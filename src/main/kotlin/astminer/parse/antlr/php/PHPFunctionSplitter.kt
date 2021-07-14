@@ -10,8 +10,8 @@ class PHPFunctionSplitter : TreeFunctionSplitter<AntlrNode> {
         const val FUNCTION_TOKEN = "Function_"
     }
 
-    override fun splitIntoFunctions(root: AntlrNode): Collection<FunctionInfo<AntlrNode>> {
+    override fun splitIntoFunctions(root: AntlrNode, filePath: String): Collection<FunctionInfo<AntlrNode>> {
         return root.preOrder().filter { it.typeLabel == LAMBDA_TOKEN || it.typeLabel == FUNCTION_TOKEN }
-            .mapNotNull { node -> node.parent?.let {statement -> ANTLRPHPFunctionInfo(statement) } }
+            .mapNotNull { node -> node.parent?.let {statement -> ANTLRPHPFunctionInfo(statement, filePath) } }
     }
 }

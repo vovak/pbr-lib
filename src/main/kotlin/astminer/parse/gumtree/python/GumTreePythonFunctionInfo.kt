@@ -7,7 +7,7 @@ import astminer.common.model.FunctionInfoParameter
 import astminer.parse.findEnclosingElementBy
 import astminer.parse.gumtree.GumTreeNode
 
-class GumTreePythonFunctionInfo(override val root: GumTreeNode) : FunctionInfo<GumTreeNode> {
+class GumTreePythonFunctionInfo(override val root: GumTreeNode, override val filePath: String) : FunctionInfo<GumTreeNode> {
     companion object {
         private object TypeLabels {
             const val classDefinition = "ClassDef"

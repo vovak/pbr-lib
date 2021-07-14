@@ -7,7 +7,7 @@ import astminer.common.model.FunctionInfoParameter
 import astminer.parse.antlr.*
 import astminer.parse.findEnclosingElementBy
 
-class ANTLRPHPFunctionInfo(override val root: AntlrNode) : FunctionInfo<AntlrNode> {
+class ANTLRPHPFunctionInfo(override val root: AntlrNode, override val filePath: String) : FunctionInfo<AntlrNode> {
     override val returnType = getElementType(root)
     override val nameNode: AntlrNode? = root.getChildOfType(FUNCTION_NAME)
 

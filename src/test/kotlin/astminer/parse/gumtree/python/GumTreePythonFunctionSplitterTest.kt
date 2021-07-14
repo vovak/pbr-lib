@@ -15,7 +15,7 @@ class GumTreePythonFunctionSplitterTest {
         GumTreePythonParser().parseInputStream(File(filename).inputStream())
 
     private fun splitFunctions(filename: String): Collection<FunctionInfo<GumTreeNode>> =
-        GumTreePythonFunctionSplitter().splitIntoFunctions(parse(filename))
+        GumTreePythonFunctionSplitter().splitIntoFunctions(parse(filename), filename)
 
     private fun createPath(file: String) = "src/test/resources/gumTreeMethodSplitter/$file"
 

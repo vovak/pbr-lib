@@ -6,7 +6,8 @@ import astminer.common.model.FunctionInfo
 import astminer.common.model.FunctionInfoParameter
 import astminer.parse.gumtree.GumTreeNode
 
-class GumTreeJavaFunctionInfo(override val root: GumTreeNode) : FunctionInfo<GumTreeNode> {
+class GumTreeJavaFunctionInfo(override val root: GumTreeNode, override val filePath: String) :
+    FunctionInfo<GumTreeNode> {
     companion object {
         private object TypeLabels {
             const val simpleName = "SimpleName"

@@ -1,0 +1,19 @@
+inputDir: 'src/test/resources/methodSplitting/'
+outputDir: 'output'
+
+parser:
+  name: 'antlr'
+  extensions: ['java', 'js']
+
+filters:
+  - name: 'by tree size'
+    maxTreeSize: 1000
+  - name: 'by words number'
+    maxTokenWordsNumber: 1000
+
+
+labelExtractor:
+  name: 'file name'
+
+storage:
+  name: 'JsonAST'

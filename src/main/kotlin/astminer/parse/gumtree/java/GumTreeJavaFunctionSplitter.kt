@@ -6,8 +6,8 @@ import astminer.parse.gumtree.GumTreeNode
 class GumTreeJavaFunctionSplitter : TreeFunctionSplitter<GumTreeNode> {
     private val methodDeclaration = "MethodDeclaration"
 
-    override fun splitIntoFunctions(root: GumTreeNode): Collection<FunctionInfo<GumTreeNode>> {
+    override fun splitIntoFunctions(root: GumTreeNode, filePath: String): Collection<FunctionInfo<GumTreeNode>> {
         val methodRoots = root.preOrder().filter { it.typeLabel == methodDeclaration }
-        return methodRoots.map { GumTreeJavaFunctionInfo(it) }
+        return methodRoots.map { GumTreeJavaFunctionInfo(it, filePath) }
     }
 }

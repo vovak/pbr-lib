@@ -1,4 +1,4 @@
-package astminer.cli.util
+package astminer.pipeline.util
 
 import java.io.File
 import kotlin.test.assertTrue

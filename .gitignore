@@ -1,11 +1,11 @@
-*.iml
-*.csv
-asts/
-
 .idea/
 .gradle/
-examples/out/
+.DS_Store
+
 src/main/generated/
 build/
+examples/out/
+asts/
+*.csv
+log.txt
 
-.DS_Store

@@ -8,7 +8,8 @@ import astminer.parse.findEnclosingElementBy
 /**
 Base class for describing JavaScript methods, functions or arrow functions.
  */
-abstract class AntlrJavaScriptElementInfo(override val root: AntlrNode) : FunctionInfo<AntlrNode> {
+abstract class AntlrJavaScriptElementInfo(override val root: AntlrNode, override val filePath: String) :
+    FunctionInfo<AntlrNode> {
     companion object {
         private val ENCLOSING_ELEMENT_NODES =
             listOf("functionDeclaration", "variableDeclaration", "classDeclaration", "methodDefinition")
@@ -62,7 +63,7 @@ abstract class AntlrJavaScriptElementInfo(override val root: AntlrNode) : Functi
             else -> parametersRoot
                 .getItOrChildrenOfType(SINGLE_PARAMETER_NODE)
                 .map { it.getChildOfType(PARAMETER_NAME_NODE) ?: it }
-            }
+        }
         return parameterNameNodes.map {
             val parameterName = it.originalToken ?: throw IllegalStateException("Parameter name wasn't found")
             FunctionInfoParameter(name = parameterName, type = null)
@@ -72,7 +73,7 @@ abstract class AntlrJavaScriptElementInfo(override val root: AntlrNode) : Functi
     abstract fun getParametersRoot(): AntlrNode?
 }
 
-class JavaScriptArrowInfo(override val root: AntlrNode) : AntlrJavaScriptElementInfo(root) {
+class JavaScriptArrowInfo(root: AntlrNode, filePath: String) : AntlrJavaScriptElementInfo(root, filePath) {
     companion object {
         private const val ARROW_NAME_NODE = "Identifier"
         private const val ARROW_PARAMETER_NODE = "arrowFunctionParameters"
@@ -89,7 +90,7 @@ class JavaScriptArrowInfo(override val root: AntlrNode) : AntlrJavaScriptElement
     }
 }
 
-class JavaScriptMethodInfo(override val root: AntlrNode) : AntlrJavaScriptElementInfo(root) {
+class JavaScriptMethodInfo(root: AntlrNode, filePath: String) : AntlrJavaScriptElementInfo(root, filePath) {
     companion object {
         private val METHOD_GETTERS_SETTERS = listOf("getter", "setter")
         private const val METHOD_NAME_NODE = "identifierName"
@@ -113,7 +114,7 @@ class JavaScriptMethodInfo(override val root: AntlrNode) : AntlrJavaScriptElemen
     override fun getParametersRoot(): AntlrNode? = root.getChildOfType(METHOD_PARAMETER_NODE)
 }
 
-class JavaScriptFunctionInfo(override val root: AntlrNode) : AntlrJavaScriptElementInfo(root) {
+class JavaScriptFunctionInfo(root: AntlrNode, filePath: String) : AntlrJavaScriptElementInfo(root, filePath) {
     companion object {
         private const val FUNCTION_NAME_NODE = "Identifier"
         private const val FUNCTION_PARAMETER_NODE = "formalParameterList"

@@ -4,7 +4,7 @@ import astminer.common.model.*
 import astminer.parse.antlr.*
 import astminer.parse.findEnclosingElementBy
 
-class AntlrJavaFunctionInfo(override val root: AntlrNode) : FunctionInfo<AntlrNode> {
+class AntlrJavaFunctionInfo(override val root: AntlrNode, override val filePath: String) : FunctionInfo<AntlrNode> {
     override val nameNode: AntlrNode? = collectNameNode()
     override val parameters: List<FunctionInfoParameter> = collectParameters()
     override val returnType: String? = collectReturnType()

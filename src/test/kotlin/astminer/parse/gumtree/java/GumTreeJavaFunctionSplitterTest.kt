@@ -10,7 +10,7 @@ private fun createTree(filename: String): GumTreeNode =
     GumTreeJavaParser().parseInputStream(File(filename).inputStream())
 
 private fun createAndSplitTree(filename: String): Collection<FunctionInfo<GumTreeNode>> =
-    GumTreeJavaFunctionSplitter().splitIntoFunctions(createTree(filename))
+    GumTreeJavaFunctionSplitter().splitIntoFunctions(createTree(filename), filename)
 
 class GumTreeJavaFunctionSplitterTest {
     @Test

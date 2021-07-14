@@ -15,12 +15,12 @@ class JavaScriptFunctionSplitter : TreeFunctionSplitter<AntlrNode> {
         private const val FUNCTION_NODE = "Function"
     }
 
-    override fun splitIntoFunctions(root: AntlrNode): Collection<FunctionInfo<AntlrNode>> {
+    override fun splitIntoFunctions(root: AntlrNode, filePath: String): Collection<FunctionInfo<AntlrNode>> {
         return root.preOrder().mapNotNull { node ->
             when {
-                node.isArrowElement() -> JavaScriptArrowInfo(node)
-                node.isFunctionElement() -> JavaScriptFunctionInfo(node)
-                node.isMethodElement() -> JavaScriptMethodInfo(node)
+                node.isArrowElement() -> JavaScriptArrowInfo(node, filePath)
+                node.isFunctionElement() -> JavaScriptFunctionInfo(node, filePath)
+                node.isMethodElement() -> JavaScriptMethodInfo(node, filePath)
                 else -> null
             }
         }

@@ -6,7 +6,7 @@ import astminer.common.model.FunctionInfo
 import astminer.common.model.FunctionInfoParameter
 import astminer.parse.findEnclosingElementBy
 
-class FuzzyCppFunctionInfo(override val root: FuzzyNode): FunctionInfo<FuzzyNode> {
+class FuzzyCppFunctionInfo(override val root: FuzzyNode, override val filePath: String): FunctionInfo<FuzzyNode> {
     companion object {
         private const val METHOD_NAME_NODE = "NAME"
         private const val METHOD_RETURN_NODE = "METHOD_RETURN"

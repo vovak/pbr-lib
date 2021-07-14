@@ -12,6 +12,7 @@ import kotlin.test.assertNull
 
 class PythonFunctionSplitterTest {
     companion object {
+        const val FILE_PATH = "src/test/resources/methodSplitting/testMethodSplitting.py"
         const val N_FUNCTIONS = 17
         val functionSplitter = PythonFunctionSplitter()
         val parser = PythonParser()
@@ -21,9 +22,9 @@ class PythonFunctionSplitterTest {
 
     @BeforeTest
     fun parseTree() {
-        val testTree =  parser.parseInputStream(File("src/test/resources/methodSplitting/testMethodSplitting.py").inputStream())
+        val testTree =  parser.parseInputStream(File(FILE_PATH).inputStream())
         assertNotNull(testTree)
-        functionInfos = functionSplitter.splitIntoFunctions(testTree)
+        functionInfos = functionSplitter.splitIntoFunctions(testTree, FILE_PATH)
     }
 
     @Test

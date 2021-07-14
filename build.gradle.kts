@@ -12,6 +12,7 @@ plugins {
     id("me.champeau.gradle.jmh") version "0.5.0"
     id("maven-publish")
     id("tanvd.kosogor") version "1.0.10" apply true
+    kotlin("plugin.serialization") version "1.4.32"
 }
 
 defaultTasks("run")
@@ -35,11 +36,14 @@ dependencies {
     // ===== Main =====
     implementation(kotlin("stdlib"))
     implementation("com.github.ajalt.clikt", "clikt", "3.2.0")
+    implementation("com.charleskorn.kaml:kaml:0.33.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
 
     // ===== Logging =====
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
     implementation("org.slf4j", "slf4j-simple", "1.7.30")
     implementation("io.github.microutils:kotlin-logging:1.5.9")
+
 
     // ===== Test =====
     testImplementation("junit:junit:4.13.2")

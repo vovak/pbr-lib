@@ -3,8 +3,6 @@ package astminer.storage.ast
 import astminer.common.createBamboo
 import astminer.common.createDummyTree
 import astminer.common.createSmallTree
-import astminer.common.labeledWith
-import astminer.storage.ast.CsvAstStorage
 import org.junit.Assert
 import org.junit.Test
 

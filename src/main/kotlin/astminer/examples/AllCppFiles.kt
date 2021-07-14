@@ -2,28 +2,26 @@
 
 package astminer.examples
 
-import astminer.common.getProjectFilesWithExtension
+import astminer.config.*
 import astminer.parse.fuzzy.cpp.FuzzyCppParser
-import astminer.storage.path.Code2VecPathStorage
-import astminer.storage.path.PathBasedStorageConfig
+import astminer.pipeline.Pipeline
 import java.io.File
 
 // Retrieve paths from .cpp preprocessed files, using a fuzzyc2cpg parser.
 fun allCppFiles() {
     val inputDir = File("src/test/resources/examples/cpp")
-
-    val outputDir = "out_examples/allCppFiles"
-    val storage = Code2VecPathStorage(outputDir, PathBasedStorageConfig(5, 5))
+    val preprocessedDir = File("preprocessed")
+    // TODO: preprocessing should once become a part of the pipeline
     val parser = FuzzyCppParser()
-    val preprocOutputFolder = File("preprocessed")
+    parser.preprocessProject(inputDir, preprocessedDir)
 
-    parser.preprocessProject(inputDir, preprocOutputFolder)
+    val config = PipelineConfig(
+        inputDir = preprocessedDir.path,
+        outputDir = "out_examples/allCppFiles",
+        parser = ParserConfig(ParserType.Fuzzy, listOf(FileExtension.Cpp)),
+        labelExtractor = FileNameExtractorConfig(),
+        storage = Code2VecPathStorageConfig(5, 5)
+    )
 
-    val files = getProjectFilesWithExtension(preprocOutputFolder, "cpp")
-
-    parser.parseFiles(files) { parseResult ->
-        storage.store(parseResult.labeledWithFilePath())
-    }
-
-    storage.close()
+    Pipeline(config).run()
 }

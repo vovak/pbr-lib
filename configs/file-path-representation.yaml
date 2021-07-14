@@ -1,0 +1,18 @@
+inputDir: 'src/test/resources/methodSplitting/'
+outputDir: 'output'
+
+parser:
+  name: 'antlr'
+  extensions: ['java', 'js']
+
+filters:
+  - name: 'by tree size'
+    maxTreeSize: 1000
+
+labelExtractor:
+  name: 'file name'
+
+storage:
+  name: 'Code2vec'
+  maxPathLength: 5
+  maxPathWidth: 5

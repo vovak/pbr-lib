@@ -1,12 +1,12 @@
 package astminer.storage.ast
 
-import astminer.cli.LabeledResult
+import astminer.common.model.LabeledResult
 import astminer.common.model.Node
 import astminer.common.storage.RankedIncrementalIdStorage
 import astminer.common.storage.dumpIdStorageToCsv
 import astminer.common.storage.nodeTypeToCsvString
 import astminer.common.storage.tokenToCsvString
-import astminer.storage.Storage
+import astminer.common.model.Storage
 import java.io.File
 import java.io.PrintWriter
 

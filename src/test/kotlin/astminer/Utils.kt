@@ -1,5 +1,7 @@
 package astminer
 
+import astminer.common.model.Node
+import astminer.common.model.Parser
 import java.io.File
 
 fun checkExecutable(execName: String): Boolean {
@@ -12,3 +14,5 @@ fun checkExecutable(execName: String): Boolean {
     }
     return false
 }
+
+fun <T : Node> Parser<T>.parseFiles(files: List<File>) = files.map { parseFile(it).root }

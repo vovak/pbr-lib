@@ -1,12 +1,12 @@
 package astminer.storage.path
 
-import astminer.cli.LabeledResult
+import astminer.common.model.LabeledResult
 import astminer.common.model.*
 import astminer.common.storage.*
 import astminer.paths.PathMiner
 import astminer.paths.PathRetrievalSettings
 import astminer.paths.toPathContext
-import astminer.storage.Storage
+import astminer.common.model.Storage
 import java.io.File
 import java.io.PrintWriter
 

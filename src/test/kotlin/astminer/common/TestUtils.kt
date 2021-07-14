@@ -1,10 +1,14 @@
 package astminer.common
 
-import astminer.cli.LabeledResult
+import astminer.common.model.LabeledResult
 import astminer.common.model.Node
+import astminer.common.model.ParseResult
 
 
-class DummyNode(override val typeLabel: String, override val children: MutableList<DummyNode>) : Node() {
+class DummyNode(
+    override val typeLabel: String,
+    override val children: MutableList<DummyNode> = mutableListOf()
+) : Node() {
 
     //TODO("not implemented")
     override val parent: Node? = null
@@ -15,6 +19,9 @@ class DummyNode(override val typeLabel: String, override val children: MutableLi
         children.removeIf { it.typeLabel == typeLabel }
     }
 
+    fun toParseResult() = ParseResult(this, "")
+
+    fun labeledWith(label: String) = LabeledResult(this, label, "")
 }
 
 /**
@@ -75,5 +82,3 @@ fun createBamboo(size: Int): DummyNode {
     }
     return root
 }
-
-fun <T : Node> T.labeledWith(label: String) = LabeledResult(this, label, "")

@@ -16,6 +16,7 @@ import kotlin.test.assertNull
 class FuzzyMethodSplitterTest {
 
     companion object {
+        const val FILE_PATH = "src/test/resources/methodSplitting/testMethodSplitting.cpp"
         const val N_FUNCTIONS = 10
         val methodSplitter = FuzzyFunctionSplitter()
         val parser = FuzzyCppParser()
@@ -28,7 +29,7 @@ class FuzzyMethodSplitterTest {
         Assume.assumeTrue(checkExecutable("g++"))
         val testTree =  parser.parseInputStream(File("src/test/resources/methodSplitting/testMethodSplitting.cpp").inputStream())
         assertNotNull(testTree)
-        methodInfos = methodSplitter.splitIntoFunctions(testTree)
+        methodInfos = methodSplitter.splitIntoFunctions(testTree, FILE_PATH)
     }
 
     @Test
