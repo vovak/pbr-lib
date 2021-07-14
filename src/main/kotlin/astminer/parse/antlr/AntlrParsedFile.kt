@@ -11,37 +11,37 @@ import astminer.parse.antlr.python.PythonFunctionSplitter
 import astminer.parse.antlr.python.PythonParser
 import java.io.File
 
-object AntlrJavaHandlerFactory : HandlerFactory {
+object AntlrJavaParsedFileFactory : ParsedFileFactory {
     override fun createHandler(file: File) = AntlrJavaHandler(file)
 
-    class AntlrJavaHandler(file: File) : LanguageHandler<AntlrNode>() {
+    class AntlrJavaHandler(file: File) : ParsedFile<AntlrNode>() {
         override val parseResult: ParseResult<AntlrNode> = JavaParser().parseFile(file)
         override val splitter = JavaFunctionSplitter()
     }
 }
 
-object AntlrPythonHandlerFactory : HandlerFactory {
+object AntlrPythonParsedFileFactory : ParsedFileFactory {
     override fun createHandler(file: File) = AntlrPythonHandler(file)
 
-    class AntlrPythonHandler(file: File) : LanguageHandler<AntlrNode>() {
+    class AntlrPythonHandler(file: File) : ParsedFile<AntlrNode>() {
         override val parseResult: ParseResult<AntlrNode> = PythonParser().parseFile(file)
         override val splitter = PythonFunctionSplitter()
     }
 }
 
-object AntlrJavascriptHandlerFactory : HandlerFactory {
+object AntlrJavascriptParsedFileFactory : ParsedFileFactory {
     override fun createHandler(file: File) = AntlrJavascriptHandler(file)
 
-    class AntlrJavascriptHandler(file: File) : LanguageHandler<AntlrNode>() {
+    class AntlrJavascriptHandler(file: File) : ParsedFile<AntlrNode>() {
         override val parseResult: ParseResult<AntlrNode> = JavaScriptParser().parseFile(file)
         override val splitter = JavaScriptFunctionSplitter()
     }
 }
 
-object AntlrPHPHandlerFactory: HandlerFactory {
-    override fun createHandler(file: File): LanguageHandler<out Node> = AntlrPHPHandler(file)
+object AntlrPHPParsedFileFactory: ParsedFileFactory {
+    override fun createHandler(file: File): ParsedFile<out Node> = AntlrPHPHandler(file)
 
-    class AntlrPHPHandler(file: File): LanguageHandler<AntlrNode>() {
+    class AntlrPHPHandler(file: File): ParsedFile<AntlrNode>() {
         override val parseResult: ParseResult<AntlrNode> = PHPParser().parseFile(file)
         override val splitter: TreeFunctionSplitter<AntlrNode> = PHPFunctionSplitter()
     }
