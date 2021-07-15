@@ -1,19 +1,22 @@
+# input directory (path to project)
 inputDir: 'src/test/resources/methodSplitting/'
+# output directory
 outputDir: 'output'
 
+# Parses Java & JavaScript files with ANTLR
 parser:
   name: 'antlr'
   extensions: ['java', 'js']
 
 filters:
-  - name: 'by tree size'
+  - name: 'by tree size' # exclude the trees that have <= 1000 nodes
     maxTreeSize: 1000
-  - name: 'by words number'
-    maxTokenWordsNumber: 1000
 
-
+# use file names as labels
+# this selects the file level granularity
 labelExtractor:
   name: 'file name'
 
+# save to disk ASTs in the csv format
 storage:
   name: 'CsvAST'

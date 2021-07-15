@@ -1,18 +1,25 @@
+# input directory (path to project)
 inputDir: 'src/test/resources/methodSplitting/'
+# output directory
 outputDir: 'output'
 
+# Parses Java files with ANTLR
 parser:
   name: 'antlr'
   extensions: ['java']
 
 filters:
-  - name: 'by function name length'
+  - name: 'by function name length' # exclude functions that have > 10 words in their name
     maxWordsNumber: 10
-  - name: 'by words number'
+  - name: 'by words number' # exclude functions that have > 100 words in any token of their tree
     maxTokenWordsNumber: 100
 
+# use function names as labels
+# this selects the function level granularity
+# NOTE: all function names and recursive calls in the ast will be hidden
 labelExtractor:
   name: 'function name'
 
+# save to disk ASTs in the csv format
 storage:
   name: 'CsvAST'
