@@ -29,6 +29,8 @@ dependencies {
     api("com.github.gumtreediff", "client", "2.1.2")
     api("com.github.gumtreediff", "gen.jdt", "2.1.2")
     api("com.github.gumtreediff", "gen.python", "2.1.2")
+    // https://github.com/javaparser/javaparser
+    implementation("com.github.javaparser:javaparser-symbol-solver-core:3.22.1")
 
     // https://mvnrepository.com/artifact/io.shiftleft/fuzzyc2cpg
     api("io.shiftleft", "fuzzyc2cpg_2.13", "1.2.30")
