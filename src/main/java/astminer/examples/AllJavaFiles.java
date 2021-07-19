@@ -2,7 +2,7 @@ package astminer.examples;
 
 import astminer.common.model.LabeledResult;
 import astminer.common.model.*;
-import astminer.parse.gumtree.java.GumTreeJavaParser;
+import astminer.parse.gumtree.java.JDT.GumTreeJavaJDTParser;
 import astminer.storage.path.Code2VecPathStorage;
 import astminer.storage.path.PathBasedStorage;
 import astminer.storage.path.PathBasedStorageConfig;
@@ -25,7 +25,7 @@ public class AllJavaFiles {
         FileVisitor<Path> fileVisitor = new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) throws IOException {
-                Node fileTree = new GumTreeJavaParser().parseInputStream(new FileInputStream(file.toFile()));
+                Node fileTree = new GumTreeJavaJDTParser().parseInputStream(new FileInputStream(file.toFile()));
 
                 String filePath = file.toAbsolutePath().toString();
                 pathStorage.store(new LabeledResult<>(fileTree, filePath, filePath));

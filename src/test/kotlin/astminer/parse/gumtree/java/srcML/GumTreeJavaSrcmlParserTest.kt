@@ -1,15 +1,15 @@
-package astminer.parse.gumtree.java
+package astminer.parse.gumtree.java.srcML
 
 import astminer.common.getProjectFilesWithExtension
 import astminer.parseFiles
 import org.junit.Assert
 import org.junit.Test
-import java.io.*
+import java.io.File
 
-class GumTreeJavaParserTest {
+internal class GumTreeJavaSrcmlParserTest {
     @Test
     fun testNodeIsNotNull() {
-        val parser = GumTreeJavaParser()
+        val parser = GumTreeJavaSrcmlParser()
         val file = File("src/test/resources/examples/1.java")
 
         val node = parser.parseFile(file).root
@@ -18,7 +18,7 @@ class GumTreeJavaParserTest {
 
     @Test
     fun testProjectParsing() {
-        val parser = GumTreeJavaParser()
+        val parser = GumTreeJavaSrcmlParser()
         val projectRoot = File("src/test/resources/examples")
 
         val trees = parser.parseFiles(getProjectFilesWithExtension(projectRoot, "java"))

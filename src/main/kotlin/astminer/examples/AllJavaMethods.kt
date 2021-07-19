@@ -3,8 +3,8 @@ package astminer.examples
 import astminer.common.model.LabeledResult
 import astminer.common.model.FunctionInfo
 import astminer.parse.gumtree.GumTreeNode
-import astminer.parse.gumtree.java.GumTreeJavaParser
-import astminer.parse.gumtree.java.GumTreeJavaFunctionSplitter
+import astminer.parse.gumtree.java.JDT.GumTreeJavaJDTParser
+import astminer.parse.gumtree.java.JDT.GumTreeJavaJDTFunctionSplitter
 import astminer.storage.path.Code2VecPathStorage
 import astminer.storage.path.PathBasedStorageConfig
 import java.io.File
@@ -28,10 +28,10 @@ fun allJavaMethods() {
 
     File(inputDir).forFilesWithSuffix(".java") { file ->
         //parse file
-        val fileNode = GumTreeJavaParser().parseInputStream(file.inputStream())
+        val fileNode = GumTreeJavaJDTParser().parseInputStream(file.inputStream())
 
         //extract method nodes
-        val methodNodes = GumTreeJavaFunctionSplitter().splitIntoFunctions(fileNode, file.path)
+        val methodNodes = GumTreeJavaJDTFunctionSplitter().splitIntoFunctions(fileNode, file.path)
 
         methodNodes.forEach { methodInfo ->
             //Retrieve a method identifier

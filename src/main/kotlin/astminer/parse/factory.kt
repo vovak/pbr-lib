@@ -7,7 +7,7 @@ import astminer.parse.antlr.AntlrJavaHandlerFactory
 import astminer.parse.antlr.AntlrJavascriptHandlerFactory
 import astminer.parse.antlr.AntlrPHPHandlerFactory
 import astminer.parse.antlr.AntlrPythonHandlerFactory
-import astminer.parse.gumtree.GumtreeJavaHandlerFactory
+import astminer.parse.gumtree.GumtreeJavaJDTHandlerFactory
 import astminer.parse.gumtree.GumtreePythonHandlerFactory
 
 fun getHandlerFactory(extension: FileExtension, parserType: ParserType): HandlerFactory {
@@ -20,7 +20,7 @@ fun getHandlerFactory(extension: FileExtension, parserType: ParserType): Handler
 
 private fun getGumtreeHandlerFactory(extension: FileExtension): HandlerFactory {
     return when (extension) {
-        FileExtension.Java -> GumtreeJavaHandlerFactory
+        FileExtension.Java -> GumtreeJavaJDTHandlerFactory
         FileExtension.Python -> GumtreePythonHandlerFactory
         else -> throw UnsupportedOperationException()
     }

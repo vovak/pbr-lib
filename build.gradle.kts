@@ -28,6 +28,7 @@ dependencies {
     api("com.github.gumtreediff", "core", "2.1.2")
     api("com.github.gumtreediff", "client", "2.1.2")
     api("com.github.gumtreediff", "gen.jdt", "2.1.2")
+    api("com.github.gumtreediff", "gen.srcml","2.1.2")
     api("com.github.gumtreediff", "gen.python", "2.1.2")
 
     // https://mvnrepository.com/artifact/io.shiftleft/fuzzyc2cpg

@@ -1,4 +1,4 @@
-package astminer.parse.gumtree.java
+package astminer.parse.gumtree.java.JDT
 
 import astminer.common.model.EnclosingElement
 import astminer.common.model.EnclosingElementType
@@ -6,7 +6,7 @@ import astminer.common.model.FunctionInfo
 import astminer.common.model.FunctionInfoParameter
 import astminer.parse.gumtree.GumTreeNode
 
-class GumTreeJavaFunctionInfo(override val root: GumTreeNode, override val filePath: String) :
+class GumTreeJavaJDTFunctionInfo(override val root: GumTreeNode, override val filePath: String) :
     FunctionInfo<GumTreeNode> {
     companion object {
         private object TypeLabels {

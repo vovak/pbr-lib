@@ -20,6 +20,10 @@ RUN apt-get update && \
     chmod +x pythonparser
 ENV PATH="/pythonparser:${PATH}"
 
+# Install srcML
+RUN wget http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb && \
+    dpkg -i srcml_1.0.0-1_ubuntu20.04.deb
+
 # Copy astminer sources
 WORKDIR astminer
 COPY . .

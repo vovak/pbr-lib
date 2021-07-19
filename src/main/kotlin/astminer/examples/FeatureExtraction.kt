@@ -2,12 +2,12 @@ package astminer.examples
 
 import astminer.common.numberOfLines
 import astminer.featureextraction.*
-import astminer.parse.gumtree.java.GumTreeJavaParser
+import astminer.parse.gumtree.java.JDT.GumTreeJavaJDTParser
 import java.io.File
 
 
 fun parseAndCollectFeatures() {
-    val parser = GumTreeJavaParser()
+    val parser = GumTreeJavaJDTParser()
     val features : List<TreeFeature<Any>> = listOf(Depth, NumberOfNodes, BranchingFactor, CompressiblePathLengths, Tokens, NodeTypes)
 
     val folderInput = "./testData/featureextraction"

@@ -3,6 +3,7 @@ package astminer.parse.gumtree.python
 import astminer.common.model.Parser
 import astminer.parse.ParsingException
 import astminer.parse.gumtree.GumTreeNode
+import astminer.parse.gumtree.wrapGumTreeNode
 import com.github.gumtreediff.client.Run
 import com.github.gumtreediff.gen.python.PythonTreeGenerator
 import com.github.gumtreediff.tree.TreeContext
@@ -20,8 +21,4 @@ class GumTreePythonParser : Parser<GumTreeNode> {
     } catch (e: Exception) {
         throw ParsingException("GumTree", "Python", e.message)
     }
-}
-
-fun wrapGumTreeNode(treeContext: TreeContext): GumTreeNode {
-    return GumTreeNode(treeContext.root, treeContext, null)
 }
