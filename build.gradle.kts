@@ -30,6 +30,9 @@ dependencies {
     api("com.github.gumtreediff", "gen.jdt", "2.1.2")
     api("com.github.gumtreediff", "gen.python", "2.1.2")
 
+    // https://spoon.gforge.inria.fr/
+    implementation("fr.inria.gforge.spoon:spoon-core:9.1.0-beta-16")
+
     // https://mvnrepository.com/artifact/io.shiftleft/fuzzyc2cpg
     api("io.shiftleft", "fuzzyc2cpg_2.13", "1.2.30")
 

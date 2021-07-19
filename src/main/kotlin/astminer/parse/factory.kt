@@ -9,12 +9,14 @@ import astminer.parse.antlr.AntlrPHPHandlerFactory
 import astminer.parse.antlr.AntlrPythonHandlerFactory
 import astminer.parse.gumtree.GumtreeJavaHandlerFactory
 import astminer.parse.gumtree.GumtreePythonHandlerFactory
+import astminer.parse.spoon.SpoonHandlerFactory
 
 fun getHandlerFactory(extension: FileExtension, parserType: ParserType): HandlerFactory {
     return when (parserType) {
         ParserType.GumTree -> getGumtreeHandlerFactory(extension)
         ParserType.Antlr -> getAntlrHandlerFactory(extension)
         ParserType.Fuzzy -> getFuzzyHandlerFactory(extension)
+        ParserType.Spoon -> getSpoonHandlerFactory(extension)
     }
 }
 
@@ -39,6 +41,13 @@ private fun getAntlrHandlerFactory(extension: FileExtension): HandlerFactory {
 private fun getFuzzyHandlerFactory(extension: FileExtension): HandlerFactory {
     return when (extension) {
         FileExtension.C, FileExtension.Cpp -> FuzzyCppHandler
+        else -> throw UnsupportedOperationException()
+    }
+}
+
+private fun getSpoonHandlerFactory(extension: FileExtension): HandlerFactory {
+    return when(extension) {
+        FileExtension.Java -> SpoonHandlerFactory()
         else -> throw UnsupportedOperationException()
     }
 }
